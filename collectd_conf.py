@@ -1,4 +1,9 @@
-# Config file for collectd(1).
+import os
+import ip_address
+
+collectd_ip_addr = ip_address.ip_address(os.environment['COLLECTD_PORT_25826_UDP_ADDR'])
+
+config = """# Config file for collectd(1).
 #
 # Some plugins need additional configuration and are disabled by default.
 # Please read collectd.conf(5) for details.
@@ -118,7 +123,7 @@ LoadPlugin memory
 #LoadPlugin multimeter
 #LoadPlugin mysql
 #LoadPlugin netlink
-#LoadPlugin network
+LoadPlugin network
 #LoadPlugin nfs
 #LoadPlugin nginx
 #LoadPlugin notify_desktop
@@ -599,7 +604,8 @@ LoadPlugin users
 #	IgnoreSelected false
 #</Plugin>
 
-#<Plugin network>
+<Plugin network>
+Server "{ip}" "25826"
 #	# client setup:
 #	Server "ff18::efc0:4a42" "25826"
 #	<Server "239.192.74.66" "25826">
@@ -627,7 +633,7 @@ LoadPlugin users
 #
 #	# "garbage collection"
 #	CacheFlush 1800
-#</Plugin>
+</Plugin>
 
 #<Plugin nginx>
 #	URL "http://localhost/status?auto"
@@ -1096,4 +1102,7 @@ LoadPlugin users
 <Include "/etc/collectd/collectd.conf.d">
 	Filter "*.conf"
 </Include>
+""".format(ip=str(collectd_ip_addr))
+with open("/etc/collectd/collectd.conf","w") as fh:
+    fh.write(config)
 
