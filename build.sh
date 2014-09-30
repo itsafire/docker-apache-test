@@ -1,1 +1,1 @@
-docker build -t itsafire/apache .
+docker build -t itsafire/apache-test .

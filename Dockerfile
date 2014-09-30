@@ -17,8 +17,8 @@ ADD 000-default.conf /etc/apache2/sites-available/
 ADD default-ssl.conf /etc/apache2/sites-available/
 
 # collectd config
-ADD collectd.conf /etc/collectd/
-
+ADD collectd_conf.py /etc/my_init.d/
+ADD collectd.sh /etc/service/collectd/run
 EXPOSE 80
 
 CMD ["/sbin/my_init"]

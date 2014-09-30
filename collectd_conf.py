@@ -1,7 +1,8 @@
+#!/usr/bin/python3
 import os
-import ip_address
+import ipaddress
 
-collectd_ip_addr = ip_address.ip_address(os.environment['COLLECTD_PORT_25826_UDP_ADDR'])
+collectd_ip_addr = ipaddress.ip_address(os.environ['COLLECTD_PORT_25826_UDP_ADDR'])
 
 config = """# Config file for collectd(1).
 #
@@ -188,7 +189,7 @@ LoadPlugin users
 #		#TypeInstance "unspecified"
 #
 #		SetPlugin "cpu"
-#		SetPluginInstance "even-%{aggregation}"
+#		SetPluginInstance "even-%{{aggregation}}"
 #
 #		GroupBy "Host"
 #		GroupBy "TypeInstance"

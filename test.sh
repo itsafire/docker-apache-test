@@ -1,2 +1,2 @@
-docker run --link collectd:collectd -d -e VIRTUAL_HOST=dockertest2.work.de itsafire/apache
-docker run --link collectd:colledtd -d -e VIRTUAL_HOST=dockertest3.work.de itsafire/apache
+docker run --link collectd:collectd -d -e VIRTUAL_HOST=test1.docker.work.de itsafire/apache-test
+docker run --link collectd:collectd -d -e VIRTUAL_HOST=test2.docker.work.de itsafire/apache-test
