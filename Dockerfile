@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.9.13
 
-RUN apt-get update
+RUN apt-get -y update && apt-get -y upgrade
 RUN apt-get install -y apache2 libapache2-mod-php5 collectd
 
 ENV APACHE_RUN_USER www-data
@@ -20,5 +20,8 @@ ADD default-ssl.conf /etc/apache2/sites-available/
 ADD collectd_conf.py /etc/my_init.d/
 ADD collectd.sh /etc/service/collectd/run
 EXPOSE 80
+VOLUME /var/www
+VOLUME /etc/php5
+VOLUME /etc/apache2
 
 CMD ["/sbin/my_init"]
