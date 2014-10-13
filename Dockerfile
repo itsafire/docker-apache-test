@@ -1,7 +1,7 @@
-FROM phusion/baseimage:0.9.13
+FROM nawork/baseimage
 
-RUN apt-get -y update && apt-get -y upgrade
-RUN apt-get install -y apache2 libapache2-mod-php5 collectd
+RUN apt-get -y update && apt-get -y --no-install-recommends upgrade
+RUN apt-get install -y --no-install-recommends apache2 libapache2-mod-php5 collectd
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
@@ -14,6 +14,7 @@ ADD index.php /var/www/html/
 RUN rm /var/www/html/index.html
 # apache config
 ADD 000-default.conf /etc/apache2/sites-available/
+ADD apache2.conf /etc/apache2/
 ADD default-ssl.conf /etc/apache2/sites-available/
 
 # collectd config

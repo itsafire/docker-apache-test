@@ -2,7 +2,7 @@
 import os
 import ipaddress
 
-collectd_ip_addr = ipaddress.ip_address(os.environ['COLLECTD_PORT_25826_UDP_ADDR'])
+collectd_ip_addr = ipaddress.ip_address(os.environ['ELK_PORT_25826_TCP_ADDR'])
 
 config = """# Config file for collectd(1).
 #
@@ -109,7 +109,7 @@ LoadPlugin interface
 #LoadPlugin ipmi
 #LoadPlugin iptables
 #LoadPlugin ipvs
-LoadPlugin irq
+#LoadPlugin irq
 #LoadPlugin java
 #LoadPlugin libvirt
 LoadPlugin load

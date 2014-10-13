@@ -1,15 +1,17 @@
 #!/bin/bash
 
+COUNT=10
+
 case "$1" in
 start)
-    for i in $(seq 1 10); do 
-        docker run --link collectd:collectd -d -e VIRTUAL_HOST=test$i.docker.work.de --name apache_test_$i itsafire/apache-test 
+    for i in $(seq 1 $COUNT); do 
+        docker run --link elk:elk --link redis:redis -d -e VIRTUAL_HOST=test$i.docker.work.de --name test$i.docker.work.de itsafire/apache-test 
     done
 ;;
 stop)
-    for i in $(seq 1 10); do 
-        docker stop apache_test_$i 
-        docker rm apache_test_$i
+    for i in $(seq 1 $COUNT); do 
+        docker stop test$i.docker.work.de
+        docker rm test$i.docker.work.de
     done
 ;;
 esac
