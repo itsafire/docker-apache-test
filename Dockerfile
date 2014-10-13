@@ -17,9 +17,6 @@ ADD 000-default.conf /etc/apache2/sites-available/
 ADD apache2.conf /etc/apache2/
 ADD default-ssl.conf /etc/apache2/sites-available/
 
-# collectd config
-ADD collectd_conf.py /etc/my_init.d/
-ADD collectd.sh /etc/service/collectd/run
 EXPOSE 80
 VOLUME /var/www
 VOLUME /etc/php5
