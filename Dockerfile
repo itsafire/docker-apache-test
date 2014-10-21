@@ -1,6 +1,5 @@
 FROM nawork/baseimage
 
-VOLUME /var/www/ /etc/php5/ /etc/apache2/
 
 RUN apt-get -y update && apt-get -y --no-install-recommends upgrade
 RUN apt-get install -y --no-install-recommends apache2 php5-fpm
@@ -26,5 +25,6 @@ RUN /usr/sbin/a2enmod proxy_fcgi rewrite
 
 EXPOSE 80
 
+VOLUME /var/www/ /etc/php5/ /etc/apache2/
 
 CMD ["/sbin/my_init"]
