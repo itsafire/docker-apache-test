@@ -1,8 +1,8 @@
-FROM nawork/baseimage
+FROM nawork/baseimage:jessie
 
 
 RUN apt-get -y update && apt-get -y --no-install-recommends upgrade
-RUN apt-get install -y --no-install-recommends apache2 php5-fpm
+RUN apt-get install -y -t wheezy-backports --no-install-recommends apache2 php5-fpm
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
@@ -14,7 +14,6 @@ ADD service-fpm.sh /etc/service/fpm/run
 
 # PHP demo files
 ADD index.php /var/www/html/
-RUN rm /var/www/html/index.html
 # apache config
 ADD 000-default.conf /etc/apache2/sites-available/
 ADD apache2.conf /etc/apache2/
