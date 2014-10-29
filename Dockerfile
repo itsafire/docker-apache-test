@@ -1,6 +1,5 @@
 FROM nawork/baseimage:jessie
 
-
 RUN apt-get -y update && apt-get -y --no-install-recommends upgrade
 RUN apt-get install -y -t wheezy-backports --no-install-recommends apache2 php5-fpm
 
