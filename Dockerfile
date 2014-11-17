@@ -23,6 +23,6 @@ RUN /usr/sbin/a2enmod proxy_fcgi rewrite
 
 EXPOSE 80
 
-VOLUME /var/www/ /etc/php5/ /etc/apache2/
+
 
 CMD ["/sbin/my_init"]
